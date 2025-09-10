@@ -30,4 +30,3 @@ def test_cli_applies_overlay_and_updates_summary(capsys: pytest.CaptureFixture[s
     out = capsys.readouterr().out
     assert "workload.streaming: False" in out
     assert "workload.concurrency: [8, 32]" in out
-
