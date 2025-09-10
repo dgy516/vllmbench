@@ -1,0 +1,8 @@
+schema_version: v2
+scenario_name: invalid
+workload:
+  streaming: true
+  input_len: [1, 2]
+  output_cap: [1, 2]
+  concurrency: [1, 2]
+

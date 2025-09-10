@@ -1,0 +1,22 @@
+schema_version: v1
+scenario_name: basic_stream_toppp
+workload:
+  streaming: true
+  input_len: [256, 1024]
+  output_cap: [256, 512]
+  concurrency: [4, 16]
+pd:
+  mode: mixed
+service:
+  params:
+    max_num_seqs: 256
+    max_model_len: 8192
+ci:
+  repeats: 1
+  timeout_minutes: 90
+  failure_policy: stop
+reports:
+  html: true
+  grafana: true
+  pr_comment: false
+

@@ -14,10 +14,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install -r vllmbench/requirements-dev.txt
-      - run: ruff check vllmbench/src vllmbench/tests
-      - run: black --check vllmbench/src vllmbench/tests
-      - run: isort --check-only vllmbench/src vllmbench/tests
+      - run: pip install -r requirements-dev.txt
+      - run: ruff check src tests
+      - run: black --check src tests
+      - run: isort --check-only src tests
 
   typecheck:
     name: typecheck
@@ -27,8 +27,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install -r vllmbench/requirements-dev.txt
-      - run: mypy --ignore-missing-imports vllmbench/src
+      - run: pip install -r requirements-dev.txt
+      - run: mypy --ignore-missing-imports src
 
   test:
     name: test
@@ -38,5 +38,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install -r vllmbench/requirements-dev.txt
+      - run: pip install -r requirements-dev.txt
       - run: pytest -q
