@@ -1,0 +1,11 @@
+
+check:
+	. .venv/bin/activate && ruff check vllmbench/src vllmbench/tests && \
+	black --check vllmbench/src vllmbench/tests && \
+	isort --check-only vllmbench/src vllmbench/tests && \
+	mypy --ignore-missing-imports vllmbench/src && \
+	pytest -q
+
+bootstrap:
+	python3.11 -m venv .venv
+	. .venv/bin/activate && pip install -r vllmbench/requirements-dev.txt

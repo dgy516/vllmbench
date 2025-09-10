@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+if [ -d ".venv" ]; then
+  source .venv/bin/activate || true
+fi
+echo "Running quick checks before push..."
+ruff check vllmbench/src vllmbench/tests
+black --check vllmbench/src vllmbench/tests
+isort --check-only vllmbench/src vllmbench/tests
+mypy --ignore-missing-imports vllmbench/src
+pytest -q
