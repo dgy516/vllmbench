@@ -4,6 +4,7 @@ import argparse
 import sys
 from typing import Iterable, List
 
+from . import errors as err
 from . import loader
 
 
@@ -30,8 +31,18 @@ def main(argv: Iterable[str] | None = None) -> int:
 
     try:
         cfg = loader.load_and_validate(args.files)
-    except Exception as e:  # noqa: BLE001 keep simple for CLI
-        print(f"error: {e}", file=sys.stderr)
+    except FileNotFoundError as e:
+        print(f"error {err.E_IO}: file not found: {e}", file=sys.stderr)
+        return 2
+    except Exception as e:  # noqa: BLE001
+        # Best-effort classification for config/validation errors
+        msg = str(e)
+        code = (
+            err.E_CONFIG
+            if "schema_version" in msg or "validation" in msg.lower()
+            else err.E_USAGE
+        )
+        print(f"error {code}: {msg}", file=sys.stderr)
         return 2
 
     sys.stdout.write(_format_summary(cfg))
