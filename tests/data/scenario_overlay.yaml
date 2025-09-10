@@ -1,0 +1,6 @@
+workload:
+  streaming: false
+  concurrency: [8, 32]
+ci:
+  repeats: 2
+
