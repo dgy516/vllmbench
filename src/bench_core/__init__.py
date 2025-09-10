@@ -1,10 +1,3 @@
-from . import cli  # re-export for `from bench_core import cli`
-from . import manifest  # re-export for `from bench_core import manifest`
-from . import \
-    orchestrator  # re-export for `from bench_core import orchestrator`
+from . import cli, manifest, orchestrator  # re-export packages
 
-__all__ = [
-    "cli",
-    "orchestrator",
-    "manifest",
-]
+__all__ = ["cli", "orchestrator", "manifest"]
